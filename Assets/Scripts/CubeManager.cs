@@ -18,8 +18,6 @@ public class CubeManager : MonoBehaviour
     public Text BestTime;
     public Text LastScramble;
 
-
-
     private static readonly float[] speed = { 1, 2, 3, 6, 9, 15, 18, 22.5F, 30, 45, 90 };
 
     public static bool isShuffled = false;
@@ -37,11 +35,9 @@ public class CubeManager : MonoBehaviour
     private int amount_of_moves_in_queue;
     private const int scramble_amount = 24;
 
-   
-
-    public  int current_speed = (int)(speed.Length * 0.7f);
-    private  int animation_speed = 0;
-    private  int speed_before_end = (int)(speed.Length * 0.7f);
+    public int current_speed;
+    private int animation_speed;
+    private int speed_before_end;
     
     List<GameObject> GetLayer(Layers layer)
     {
@@ -261,9 +257,8 @@ public class CubeManager : MonoBehaviour
             scramble += move.move_name + " ";
             i++;
         }
-        UnityEngine.Debug.Log(scramble);
+
         is_shuffling = true;
-        //isShuffled = true;
         toShuffle = false;
     }
 
@@ -324,28 +319,23 @@ public class CubeManager : MonoBehaviour
                     time = TImer.TimeToString();
                     LastTime.text = time;
 
-
-
-                    MySesion.Save(new TimeSesion(time, scramble));
+                    MySession.Save(new TimeSession(time, scramble));
                        
                     if (TImer.CompareStringTime(LastTime.text, BestTime.text) == -1)
                         BestTime.text = LastTime.text;
 
-                 
-                   
-                    UnityEngine.Debug.Log("MovesAmount: " + solvesAmount );
                     SavePlayer();
-                    
                   
                     moves.Enqueue(new Move(Layers.LMR, new Vector3(1, 0, 0), 45,""));
                     moves.Enqueue(new Move(Layers.LMR, new Vector3(0, 0, 1), 90, ""));
                     moves.Enqueue(new Move(Layers.LMR, new Vector3(0, 1, 0), 15,""));
                     speed_before_end = current_speed;
-                    for (int i = current_speed; i > animation_speed; i--)
-                        SpeedPanel[i].SetActive(false);
-                    
+
+                    //  for (int i = current_speed; i > animation_speed; i--)
+                    //SpeedPanel[i].SetActive(false);
+                  
                     current_speed = animation_speed;
-                    
+
                     end = true;
                 }
             }
@@ -361,8 +351,9 @@ public class CubeManager : MonoBehaviour
     {
         foreach (GameObject go in AllCubePieces)
             Destroy(go);
-        if(end)
+        if (end)
             current_speed = speed_before_end;
+
         AllCubePieces.Clear();
         moves.Clear();
 
@@ -457,11 +448,9 @@ public class CubeManager : MonoBehaviour
         SaveSystem.SavePlayer(this);
     }
 
-
-
     public void ResetStats()
     {
-        MySesion.ResetSesion();
+        MySession.ResetSesion();
         solvesAmount = 0;
         BestTime.text = "";
         LastTime.text = "";
@@ -470,16 +459,15 @@ public class CubeManager : MonoBehaviour
         LoadPlayer();
     }
 
-
     public void LoadPlayer()
     {
         PlayerData data = SaveSystem.LoadPlayer(GetType().Name);
-        UnityEngine.Debug.Log("MovesAmount after seri: " + data.solvesAmount);
         solvesAmount = data.solvesAmount;
         SolvesAmount.text = solvesAmount.ToString();
         LastTime.text = data.lastTime;
         BestTime.text = data.bestTime;
         LastScramble.text = data.lastScramble;
-        current_speed = data.currentSpeed;
+        if(!end)
+            current_speed = data.currentSpeed;
     }
 }

@@ -1,6 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using System.IO;
+﻿using System.IO;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -13,8 +11,6 @@ public class ViewSesion : MonoBehaviour
         UpdateSesion();
     }
 
-
-
     public void UpdateSesion()
     {
         Sesion.text = "";
@@ -23,12 +19,9 @@ public class ViewSesion : MonoBehaviour
         if (File.Exists(Path) == false)
             return;
 
-       string[] sesionText =  MySesion.Load();
+       string[] sesionText =  MySession.Load();
 
         for (int i = sesionText.Length - 1; i >= 0; i--)
-        {
             Sesion.text += i + 1 + ")\t\t\t" + sesionText[i] + '\n';
-        }
     }
-
 }

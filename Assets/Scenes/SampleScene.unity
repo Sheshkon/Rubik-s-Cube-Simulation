@@ -4447,7 +4447,7 @@ GameObject:
   - component: {fileID: 574577866}
   - component: {fileID: 574577865}
   m_Layer: 5
-  m_Name: Sesion
+  m_Name: Session
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4504,7 +4504,9 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Sesion
+  m_Text: 'Session
+
+'
 --- !u!222 &574577866
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -7572,7 +7574,7 @@ GameObject:
   - component: {fileID: 1113582023}
   - component: {fileID: 1113582025}
   m_Layer: 5
-  m_Name: Sesion
+  m_Name: Session
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

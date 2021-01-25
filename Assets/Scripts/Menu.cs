@@ -17,7 +17,6 @@ public class Menu : MonoBehaviour
     {
         Time.timeScale = 0f;
         PauseMenu.SetActive(true);
-      
         game_is_paused = true;
     }
 
@@ -31,7 +30,6 @@ public class Menu : MonoBehaviour
     public void Help()
     {
         HowToPlayPanel.SetActive(true);
-        
     }
     public void NextHelp()
     {
@@ -57,7 +55,6 @@ public class Menu : MonoBehaviour
 
     public void Statistics()
     {
-        //LoadPlayer();
         StatisticsPanel.SetActive(true);
     }
 
@@ -70,16 +67,13 @@ public class Menu : MonoBehaviour
 
     public void FromStatsToSesion()
     {
-       
-        SesionPanel.SetActive(true);
-        
+        SesionPanel.SetActive(true);   
     }
     
     public void FromSesionToStats()
     {
         SesionPanel.SetActive(false);
         StatisticsPanel.SetActive(true);
-
     }
 
 }

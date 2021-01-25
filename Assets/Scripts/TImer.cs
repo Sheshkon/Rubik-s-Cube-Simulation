@@ -53,7 +53,6 @@ public class TImer : MonoBehaviour
             is_stopped = true;
         }
 
-       // UnityEngine.Debug.Log("time: " + ts);
         timerText.text = TimeToString();
 
     }
@@ -76,9 +75,7 @@ public class TImer : MonoBehaviour
 
     public static string TimeToString(string time)
     {
-
         TimeSpan tmp = new TimeSpan(long.Parse(time));
-       // UnityEngine.Debug.Log("time: " + time);
 
         return string.Format("{0:00}:{1:00}:{2:00}.{3:00}",
            tmp.Hours, tmp.Minutes, tmp.Seconds,
@@ -89,6 +86,7 @@ public class TImer : MonoBehaviour
     {
         if (time2.Length < 5)
             return -1;
+
         string[] first = time1.Split(':', '.');
         string[] second = time2.Split(':', '.');
 
@@ -98,9 +96,6 @@ public class TImer : MonoBehaviour
                 return -1;
             if (int.Parse(first[i]) > int.Parse(second[i]))
                 return 1;
-
-            UnityEngine.Debug.Log(first[i]);
-            UnityEngine.Debug.Log(second[i]);
         }
         return 0;
     }

@@ -56,7 +56,6 @@ public static class SaveSystem
             Debug.LogError("same file not found in " + path);
             return null;
         }
-
     }
 
-    }
+}

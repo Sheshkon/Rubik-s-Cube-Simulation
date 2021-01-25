@@ -1,15 +1,12 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using System.IO;
+﻿using System.IO;
 using UnityEngine;
-using System.Threading.Tasks;
 
-public class TimeSesion
+public class TimeSession
 {
     public string time;
     public string scramble;
 
-    public TimeSesion(string time, string scramble)
+    public TimeSession(string time, string scramble)
     {
         this.time = time;
         this.scramble = scramble;
@@ -17,12 +14,12 @@ public class TimeSesion
 }
 
 
-public static class MySesion
+public static class MySession
 {
     private readonly static string Path = 
          Application.persistentDataPath + "/sesion.txt";
 
-    public  static void Save(TimeSesion data)
+    public  static void Save(TimeSession data)
     {
         string text ="";
        
@@ -41,10 +38,10 @@ public static class MySesion
         
     }
 
-        public static void ResetSesion()
+    public static void ResetSesion()
     {
         if (File.Exists(Path))
-         File.Delete(Path);
+            File.Delete(Path);
     }
 }
 
